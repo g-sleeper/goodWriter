@@ -1,0 +1,4 @@
+interface:
+  display_name: "goodWriter"
+  short_description: "从真实实验提炼问题解决与学习收获，写出自然、有思考深度的中文报告"
+  default_prompt: "使用 $good-writer，根据我的题目、实验记录和原稿撰写或修改报告，重点打磨总结中的问题解决过程、知识理解与个人收获。"

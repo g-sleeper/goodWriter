@@ -1,0 +1,62 @@
+{
+  "date": "2026-09-23",
+  "type": "exploratory qualitative pilot",
+  "inputs_are_synthetic": true,
+  "samples_per_case_per_method": 1,
+  "generation_environment": "Independent Codex subagents using inherited host defaults; exact model version, temperature, and seed were not recorded.",
+  "humanizer_source": "https://github.com/blader/humanizer/blob/main/SKILL.md",
+  "humanizer_reported_version": "3.0.0",
+  "humanizer_commit": "not pinned",
+  "goodwriter_tested_file_sha256": {
+    "SKILL.md": "b9538b3e2da0c6d18d73d4b4d52786691e12f808821873614379871644c20a97",
+    "agents/openai.yaml": "a9a60d609d4bfbc356c4b5cf4961108d2697fa1fdae99125f34036afaea55642",
+    "evals/cases.json": "cdbdcc26135e277bc2a8abde8d34d9ae6240381ba930f208349df79645cde103",
+    "references/exemplar-lessons.md": "a8faea7a1cfbaf9f1c747ac874e7b7db40fb34505f192dd3a051c85eae3cb4cd",
+    "references/natural-chinese.md": "5c3b771dce5c974dcb626f7e2d4633f7203f38d4c5fe9243c22c8a9c9633ecf7",
+    "references/review.md": "b1721ed8481ce078b9e30c246dbbdbfd835472f560202c3571517734a74c7108",
+    "references/sources.md": "cf9c549ec0bdca955f804ea8a548d77a3d53d7a655bcd88363ac6e6272a711bd",
+    "references/summary-craft.md": "d639a3f850abe08aacbab0caba5c89da22a7734715d6428a272c42445f7227d6"
+  },
+  "public_alpha_changes_since_test": "Public README and packaging added; default unsolicited scoring disabled. This pilot used the installed private development snapshot, not a full rerun of the public alpha.",
+  "cases": [
+    {
+      "id": "reflection",
+      "request": "请把下面实验总结改写成220至350字左右的中文本科实验报告总结，重点说明问题解决的思路、课程理解和收获。只输出最终正文，不自评。不得增加未提供的经历和实验。材料：我开始以为瓶颈在磁盘读取；分项计时后发现主要时间花在重复计算。固定同一批输入，只改缓存一项，耗时从4.8秒降到1.6秒，内存从18MB增到41MB，输出相同。只测试一个输入规模。原稿：通过本次实验，我深刻认识到了优化的重要性。经过不懈努力，我显著提升了性能，充分证明缓存是一项卓越而普适的技术，为后续深入学习奠定了坚实基础。"
+    },
+    {
+      "id": "thin-evidence",
+      "request": "请改写下面的实验总结，写得自然且有思考，适合交给老师。只输出当前材料能支持的最终正文，不自评，不提出问题；不得增加没有依据的经历、能力变化或实验。原稿：本次实验10/10测试通过。我从完全不会做到熟练掌握，经历多次挫折终于成功，证明程序对所有输入都正确。材料说明：只有10/10通过记录，没有任何初始水平、调试过程或个人理解变化的材料。"
+    }
+  ],
+  "outputs": {
+    "plain": {
+      "reflection": "一、问题解决思路：实验开始时我将性能瓶颈初步判断为磁盘读取，随后通过分项计时定位耗时来源，发现主要时间实际花在重复计算上。为验证判断，我固定同一批输入，只改变是否使用缓存，并比较运行时间、内存占用和输出结果。启用缓存后，耗时由4.8秒降至1.6秒，内存由18MB升至41MB，输出保持一致。二、课程理解与收获：这次实验让我认识到，程序优化应先测量和定位，再针对瓶颈进行改动，不能只凭直觉判断。缓存能够用额外内存换取时间，但效果需要结合具体任务和资源约束评估。本实验只测试了一个输入规模，因此结论主要适用于当前测试条件，后续还需在不同规模下进一步验证。",
+      "thin-evidence": "本次实验记录显示，程序通过了10/10项测试，说明在这组测试用例上均获得了预期结果。这一结果表明，当前实现能够满足本次测试所覆盖的检查要求，也为进一步检查程序行为提供了基础。由于现有材料未记录测试范围之外的输入，也没有提供实验过程和个人理解变化，因此本次总结仅据已完成的测试结果作出判断，不能据此推断程序对所有输入都正确。"
+    },
+    "goodwriter": {
+      "reflection": "本次实验中，我没有停留在“磁盘读取是瓶颈”的最初判断，而是先进行分项计时，定位到主要耗时来自重复计算。随后固定同一批输入，只引入缓存这一项改动，使比较条件保持一致。结果显示，耗时由4.8秒降至1.6秒，内存由18MB升至41MB，输出保持相同。这个对照让我更具体地理解了性能优化的基本思路：先用测量定位问题，再通过控制变量验证方案；缓存带来的收益是用额外内存换取计算时间，并不意味着在所有场景下都一定更优。由于本次只测试了一个输入规模，结论只能说明该条件下缓存有效，不能直接推广到其他规模。今后评价类似优化时，我会同时检查耗时、资源开销、结果一致性和测试范围。",
+      "thin-evidence": "本次测试10项全部通过，当前实现满足这些测试所覆盖的要求。该结果的适用范围限于本次测试，不能据此推出程序对所有输入都正确，也不能据此判断个人的初始水平或学习变化。"
+    },
+    "humanizer": {
+      "reflection": "本次实验让我对性能分析和优化有了更具体的理解。开始时我以为瓶颈来自磁盘读取，于是先进行分项计时；结果显示，主要耗时其实来自重复计算。为验证这一判断，我固定同一批输入，只增加缓存，再比较运行结果。耗时由4.8秒降至1.6秒，内存由18MB升至41MB，输出保持相同。这个过程说明，优化应先定位瓶颈，再通过控制变量比较方案，不能只凭直觉选择方向。缓存可以减少重复计算，但会增加内存开销，评价方案时需要同时关注时间、空间和输出正确性。由于本实验只测试了一个输入规模，上述结果只能反映当前测试范围。我的收获是形成了从计时、定位到验证的分析思路，也更清楚地认识到优化效果需要结合具体资源条件判断。",
+      "thin-evidence": "本次实验记录显示，程序在记录的10个测试样例上均通过了测试。这个结果说明，在这组测试中程序表现符合预期，但不能单独证明它对所有输入都正确。现有材料没有提供测试样例的范围，也没有记录初始水平、调试过程或个人理解变化，因此我只把10/10通过作为本次实验的结果来陈述，不把它延伸为能力变化或普遍结论。"
+    }
+  },
+  "masked_labels": {
+    "reflection": {
+      "A": "humanizer",
+      "B": "plain",
+      "C": "goodwriter"
+    },
+    "thin-evidence": {
+      "A": "goodwriter",
+      "B": "humanizer",
+      "C": "plain"
+    }
+  },
+  "review_summary": {
+    "reflection": "Humanizer and goodWriter broadly tied; plain prompting was factually accurate but used outline-like labels.",
+    "thin-evidence": "goodWriter and plain prompting both judged usable with different tradeoffs; Humanizer contained more commentary about writing.",
+    "overall": "No general superiority conclusion supported by two single-sample cases."
+  }
+}
